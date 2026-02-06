@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+:root {
+  --bg: #fdfbf7;
+  --paper: #fdfbf7;
+  --ink: #2c2c2c;
+  --accent: #ef4444;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Patrick Hand', cursive;
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+  /* Subtle paper grain texture */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Leaflet override to look sketched */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  background: #fdfbf7;
+  font-family: 'Patrick Hand', cursive;
+  filter: sepia(0.2) contrast(1.1);
+  /* Slight old paper feel */
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+/* Responsive Utilities */
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  flex-direction: row;
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column-reverse;
+    /* Map on top (visually, if column-reverse flex-start is bottom... wait.
+                                     If we want Map on Top, controls on Bottom?
+                                     Usually "column-reverse" puts the *last* DOM element at the *top*.
+                                     DOM: [Controls, Map].
+                                     Column-reverse -> Map first (Top), Controls second (Bottom).
+                                     Correct. */
+  }
+}
+
+/* Doodle inputs */
+input[type="date"] {
+  outline: none;
+  cursor: pointer;
+  background: transparent;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(0.2);
+}
